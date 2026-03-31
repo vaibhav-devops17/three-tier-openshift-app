@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: docker.io/<your-username>/backend-app:latest
+        image: docker.io/vsarode000/backend-app:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
