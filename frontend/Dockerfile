@@ -1,14 +1,12 @@
-FROM nginx:alpine
+FROM node:18-alpine
 
-# remove default config
-RUN rm -rf /usr/share/nginx/html/*
+WORKDIR /app
 
-# copy app
-COPY index.html /usr/share/nginx/html/
+# simple static server install
+RUN npm install -g serve
 
-# fix permissions for OpenShift
-RUN chmod -R 777 /var/cache/nginx /var/run /usr/share/nginx/html
+COPY index.html .
 
 EXPOSE 8080
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["serve", "-l", "8080", "."]
