@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
 
-const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/test";
+const mongoURI = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@mongo-service:27017/test`;
 
 mongoose.connect(mongoURI)
   .then(() => console.log("Mongo Connected"))
