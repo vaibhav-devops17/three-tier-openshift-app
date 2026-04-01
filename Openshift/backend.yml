@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-dev
+  labels:
+    app: three-tier
+    tier: backend
 spec:
   replicas: 1
   selector:
@@ -11,10 +14,11 @@ spec:
     metadata:
       labels:
         app: backend-dev
+        tier: backend
     spec:
       containers:
       - name: backend
-        image: docker.io/<your-username>/backend-app:latest
+        image: docker.io/vsarode000/backend-app:latest   # <your-username>
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
@@ -37,14 +41,14 @@ spec:
 
         livenessProbe:
           httpGet:
-            path: /api
+            path: /health
             port: 5000
           initialDelaySeconds: 10
           periodSeconds: 10
 
         readinessProbe:
           httpGet:
-            path: /api
+            path: /health
             port: 5000
           initialDelaySeconds: 5
           periodSeconds: 5
