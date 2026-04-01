@@ -1,2 +1,284 @@
-# three-tier-openshift-app
-Three tier app deployment on openshift
+# 🚀 3-Tier Application on OpenShift
+
+This project demonstrates a **production-ready 3-tier application** deployed on OpenShift using:
+
+* Frontend (Nginx + Modern UI)
+* Backend (Node.js + Express)
+* MongoDB (with Persistent Volume)
+* CI/CD using GitHub Actions
+* OpenShift native resources (Secrets, Route, Deployment)
+
+---
+
+# 🧱 Architecture
+
+```id="arch"
+User → OpenShift Route → Frontend (Nginx)
+                              ↓ /api
+                           Backend (Node.js)
+                              ↓
+                           MongoDB (PVC)
+```
+
+---
+
+# 🛠️ Prerequisites
+
+## 1. Docker
+
+Download: https://www.docker.com/products/docker-desktop/
+
+Verify:
+
+```id="docker"
+docker --version
+```
+
+---
+
+## 2. OpenShift CLI (oc)
+
+Download:
+https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/
+
+Verify:
+
+```id="oc"
+oc version
+```
+
+---
+
+## 3. Git
+
+Download:
+https://git-scm.com/downloads
+
+Verify:
+
+```id="git"
+git --version
+```
+
+---
+
+# 📦 Clone Repository
+
+```id="clone"
+git clone https://github.com/vaibhav-devops17/three-tier-openshift-app.git
+cd three-tier-openshift-app
+```
+
+---
+
+# 🔐 Step 1: Login to OpenShift
+
+Copy login command from OpenShift Web Console:
+
+```id="login"
+oc login --token=<your-token> --server=<cluster-url>
+```
+
+Select your project:
+
+```id="project"
+oc project <your-project-name>
+```
+
+---
+
+# 🔐 Step 2: Create Secrets
+
+⚠️ Do NOT store credentials in GitHub
+
+```id="secret"
+oc create secret generic mongo-secret \
+  --from-literal=MONGO_USER=admin \
+  --from-literal=MONGO_PASSWORD=password
+```
+
+---
+
+# 💾 Step 3: Deploy MongoDB (with PVC)
+
+```id="mongo"
+oc apply -f Openshift/mongo.yml
+```
+
+Verify:
+
+```id="mongo-check"
+oc get pods
+oc get pvc
+```
+
+---
+
+# ⚙️ Step 4: Deploy Backend
+
+```id="backend"
+oc apply -f Openshift/backend.yml
+```
+
+---
+
+# 🌐 Step 5: Deploy Frontend
+
+```id="frontend"
+oc apply -f Openshift/frontend.yml
+```
+
+---
+
+# 🌍 Step 6: Expose Application
+
+```id="route"
+oc apply -f Openshift/route.yml
+```
+
+Get URL:
+
+```id="route-get"
+oc get route
+```
+
+---
+
+# 🧪 Step 7: Test Application
+
+1. Open route URL in browser
+2. Add data using UI
+
+Verify data in MongoDB:
+
+```id="mongo-test"
+oc rsh <mongo-pod>
+mongo
+use test
+db.items.find()
+```
+
+---
+
+# 📸 Screenshots
+
+(Add screenshots here)
+
+* Application UI
+* OpenShift Pods
+* CI/CD Pipeline
+
+---
+
+# 🔁 CI/CD Pipeline
+
+GitHub Actions automatically:
+
+* Builds Docker images
+* Pushes to DockerHub
+* Updates OpenShift deployments
+
+Trigger pipeline:
+
+```id="ci"
+git push
+```
+
+---
+
+# 🔍 Monitoring & Debugging
+
+## Logs
+
+```id="logs"
+oc logs -f deployment/backend-dev
+```
+
+---
+
+## Pods
+
+```id="pods"
+oc get pods
+```
+
+---
+
+## Resource Usage
+
+```id="top"
+oc adm top pods
+```
+
+---
+
+# ❤️ Health Check
+
+Backend exposes:
+
+```id="health"
+GET /health
+```
+
+Used by OpenShift liveness and readiness probes.
+
+---
+
+# 🔁 Rollback
+
+```id="rollback"
+oc rollout undo deployment/backend-dev
+```
+
+---
+
+# 🔵🟢 Blue-Green Deployment (Concept)
+
+1. Deploy new version (green)
+2. Update service selector
+3. Switch traffic
+
+---
+
+# 💾 PVC Verification
+
+1. Insert data
+2. Delete Mongo pod
+3. Check data again
+
+If data persists → PVC working ✔
+
+---
+
+# 🔐 Security Best Practices
+
+* Use OpenShift Secrets
+* Avoid hardcoding credentials
+* Use versioned Docker images
+* Enable TLS for routes
+
+---
+
+# 🚀 Future Improvements
+
+* HPA (Auto Scaling)
+* Prometheus + Grafana Monitoring
+* Helm Charts
+* MongoDB Replica Set
+
+---
+
+# 🧠 Learning Outcomes
+
+* OpenShift deployment
+* CI/CD automation
+* Persistent storage handling
+* Debugging real-world issues
+* Production best practices
+
+---
+
+# 👨‍💻 Author
+
+Vaibhav Sarode
+Senior DevOps Engineer
