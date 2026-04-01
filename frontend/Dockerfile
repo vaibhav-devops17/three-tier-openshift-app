@@ -1,12 +1,6 @@
-FROM node:18-alpine
+FROM nginx:alpine
 
-WORKDIR /app
-
-# simple static server install
-RUN npm install -g serve
-
-COPY index.html .
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY index.html /usr/share/nginx/html/
 
 EXPOSE 8080
-
-CMD ["serve", "-l", "8080", "."]
