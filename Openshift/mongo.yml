@@ -42,7 +42,7 @@ spec:
           value: test
 
         volumeMounts:
-        - mountPath: /var/lib/mongodb/data/db   # 🔥 FIXED
+        - mountPath: /var/lib/mongodb/data
           name: mongo-storage
 
         livenessProbe:
