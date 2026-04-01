@@ -2,12 +2,102 @@
 <html>
 <head>
   <title>3-Tier App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      background: #667eea;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #5a67d8;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #f4f4f4;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      transition: 0.3s;
+    }
+
+    li:hover {
+      background: #e2e8f0;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+    }
+
+  </style>
 </head>
+
 <body>
-  <h1>3-Tier App Working 🚀</h1>
-  <input id="name" placeholder="Enter name"/>
-  <button onclick="addItem()">Add</button>
-  <ul id="list"></ul>
+
+  <div class="container">
+    <h1>🚀 3-Tier App Dashboard</h1>
+
+    <div class="input-group">
+      <input id="name" placeholder="Enter name..." />
+      <button onclick="addItem()">Add</button>
+    </div>
+
+    <ul id="list"></ul>
+
+    <div class="footer">
+      Powered by OpenShift 💪
+    </div>
+  </div>
 
 <script>
 const API = "/api";
@@ -16,20 +106,25 @@ async function load() {
   const res = await fetch(API);
   const data = await res.json();
   document.getElementById("list").innerHTML =
-    data.map(i => "<li>"+i.name+"</li>").join("");
+    data.map(i => "<li>👤 " + i.name + "</li>").join("");
 }
 
 async function addItem() {
   const name = document.getElementById("name").value;
+  if (!name) return;
+
   await fetch(API, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({name})
   });
+
+  document.getElementById("name").value = "";
   load();
 }
 
 load();
 </script>
+
 </body>
 </html>
