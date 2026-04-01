@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: docker.io/<your-username>/frontend-app:latest
+        image: docker.io/vsarode000/frontend-app:latest       # <your-username>
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
