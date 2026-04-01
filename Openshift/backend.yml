@@ -14,10 +14,45 @@ spec:
     spec:
       containers:
       - name: backend
-        image: docker.io/vsarode000/backend-app:latest
+        image: docker.io/<your-username>/backend-app:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
+
+        envFrom:
+        - configMapRef:
+            name: app-config
+
         env:
-        - name: MONGO_URI
-          value: mongodb://mongo-dev:27017/test
+        - name: MONGO_USER
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: MONGO_USER
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: MONGO_PASSWORD
+
+        livenessProbe:
+          httpGet:
+            path: /api
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /api
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
