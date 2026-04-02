@@ -208,14 +208,14 @@ oc get route
 
 # 🧪 Step 7: Test Application
 
-* Open route URL in browser
+## 1. Open route URL in browser
     https://frontend-route-vsarode000-dev.apps.rm1.0a51.p1.openshiftapps.com/
 
 ## Frontend Application UI
   
 <img width="716" height="389" alt="{D08AFDBF-C038-494A-9BBD-74D33D1AD3CF}" src="https://github.com/user-attachments/assets/583e8fbc-c25f-416c-a818-d988722dea80" />
 
-## Add data using UI
+## 2. Add data using UI
 
 ## Verify data in backend URL:
 
@@ -227,7 +227,7 @@ oc get route
   
 <img width="266" height="297" alt="{FD437C2D-5935-4B30-9993-7DB7CFF00553}" src="https://github.com/user-attachments/assets/a6ef093a-851d-4989-bf75-7d6a987779c2" />
 
-* Verify data in MongoDB:
+## Verify data in MongoDB:
 
 ```id="mongo-test"
 oc rsh <mongo-pod>
@@ -242,35 +242,34 @@ db.items.find()
 # 📸 Screenshots
 
 
-## OpenShift Deployment
+## 1. OpenShift Deployment
 
 <img width="748" height="311" alt="{B29698B6-F86F-4DFB-BC37-DA23556C4C8F}" src="https://github.com/user-attachments/assets/810fefcd-99ec-4c46-bd79-1a8c2a097663" />
 
 
-## OpenShift Persistant Volume Claim
+## 2. OpenShift Persistant Volume Claim
 
 <img width="788" height="203" alt="{BDB280CA-AC6C-4195-A742-3F269C1FA706}" src="https://github.com/user-attachments/assets/1ce10165-9796-4fa8-8610-66d83fabb225" />
 
   
-## OpenShift Service
+## 3. OpenShift Service
 
 <img width="767" height="271" alt="{D553891A-18BA-45F5-AADF-02AFB9EEBCA0}" src="https://github.com/user-attachments/assets/c1a7951b-b3c2-4a2a-9d6b-a21ff1cf4b31" />
 
 
-## OpenShift Routes
+## 4. OpenShift Routes
 
 <img width="788" height="189" alt="{D2E1D620-3CA8-41B7-BFA4-D37DC76F7F0D}" src="https://github.com/user-attachments/assets/20540d95-d13f-43f9-808c-8efc70e55a09" />
 
 
-## OpenShift Secrets
+## 5. OpenShift Secrets
 
 <img width="783" height="243" alt="{5241FCF4-D0C9-40DF-B008-48F383ADFA9F}" src="https://github.com/user-attachments/assets/f9285460-c782-4981-bc26-c0378b8d2a3a" />
 
 <img width="788" height="234" alt="{8F7C8BEF-13AC-48AE-9012-EEAF2A1D6531}" src="https://github.com/user-attachments/assets/cb8253a2-5e02-457c-9cdf-9ca5497c4ba2" />
 
 
-
-## CI/CD Pipeline
+## 6. CI/CD Pipeline
 
 <img width="960" height="368" alt="{DE339286-694E-4ADF-8E14-21A82B697E3F}" src="https://github.com/user-attachments/assets/6d83c8ba-7298-4cdb-b3e9-3977f0c907c0" />
 
