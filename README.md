@@ -102,7 +102,9 @@ oc create secret generic mongo-secret \
 # 💾 Step 3: Deploy MongoDB (with PVC)
 
 ```id="mongo"
+oc apply -f Openshift/pvc.yml
 oc apply -f Openshift/mongo.yml
+oc apply -f Openshift/mongo-service.yml
 ```
 
 Verify:
@@ -110,6 +112,7 @@ Verify:
 ```id="mongo-check"
 oc get pods
 oc get pvc
+oc get svc
 ```
 
 ---
@@ -118,6 +121,7 @@ oc get pvc
 
 ```id="backend"
 oc apply -f Openshift/backend.yml
+oc apply -f Openshift/backend-service.yml
 ```
 
 ---
@@ -126,6 +130,7 @@ oc apply -f Openshift/backend.yml
 
 ```id="frontend"
 oc apply -f Openshift/frontend.yml
+oc apply -f Openshift/frontend-service.yml
 ```
 
 ---
@@ -162,9 +167,13 @@ db.items.find()
 
 # 📸 Screenshots
 
-(Add screenshots here)
+* Frontend Application UI
+<img width="716" height="389" alt="{D08AFDBF-C038-494A-9BBD-74D33D1AD3CF}" src="https://github.com/user-attachments/assets/583e8fbc-c25f-416c-a818-d988722dea80" />
 
-* Application UI
+* Backend Application UI (Frontend_route_URL + /api)
+<img width="266" height="297" alt="{FD437C2D-5935-4B30-9993-7DB7CFF00553}" src="https://github.com/user-attachments/assets/a6ef093a-851d-4989-bf75-7d6a987779c2" />
+
+
 * OpenShift Pods
 * CI/CD Pipeline
 
