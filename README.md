@@ -187,7 +187,7 @@ oc apply -f Openshift/frontend-service.yml
 oc apply -f Openshift/route.yml
 ```
 
-Verify:
+# Verify:
 
 ```id="mongo-check"
 oc get pods
@@ -196,7 +196,7 @@ oc get svc
 ```
 <img width="949" height="311" alt="image" src="https://github.com/user-attachments/assets/e4a4b0a9-cb3a-4dfb-ba3a-fd4502899535" />
 
-Get URL:
+## Get URL:
 
 ```id="route-get"
 oc get route
@@ -208,25 +208,26 @@ oc get route
 
 # 🧪 Step 7: Test Application
 
-1. Open route URL in browser
+* Open route URL in browser
     https://frontend-route-vsarode000-dev.apps.rm1.0a51.p1.openshiftapps.com/
 
-* Frontend Application UI
+## Frontend Application UI
   
 <img width="716" height="389" alt="{D08AFDBF-C038-494A-9BBD-74D33D1AD3CF}" src="https://github.com/user-attachments/assets/583e8fbc-c25f-416c-a818-d988722dea80" />
 
-2. Add data using UI
+## Add data using UI
 
-3. Verify data in backend URL:
+## Verify data in backend URL:
 
-    add /api after the Frontend URL
-    https://frontend-route-vsarode000-dev.apps.rm1.0a51.p1.openshiftapps.com**/api**
+* Add **/api** after the Frontend URL
+  
+    https://frontend-route-vsarode000-dev.apps.rm1.0a51.p1.openshiftapps.com/api
 
-* Backend Application UI (Frontend_route_URL + /api)
+## Backend Application UI (Frontend_route_URL + /api)
   
 <img width="266" height="297" alt="{FD437C2D-5935-4B30-9993-7DB7CFF00553}" src="https://github.com/user-attachments/assets/a6ef093a-851d-4989-bf75-7d6a987779c2" />
 
-4. Verify data in MongoDB:
+* Verify data in MongoDB:
 
 ```id="mongo-test"
 oc rsh <mongo-pod>
@@ -241,27 +242,27 @@ db.items.find()
 # 📸 Screenshots
 
 
-* OpenShift Deployment
+## OpenShift Deployment
 
 <img width="748" height="311" alt="{B29698B6-F86F-4DFB-BC37-DA23556C4C8F}" src="https://github.com/user-attachments/assets/810fefcd-99ec-4c46-bd79-1a8c2a097663" />
 
 
-* OpenShift Persistant Volume Claim
+## OpenShift Persistant Volume Claim
 
 <img width="788" height="203" alt="{BDB280CA-AC6C-4195-A742-3F269C1FA706}" src="https://github.com/user-attachments/assets/1ce10165-9796-4fa8-8610-66d83fabb225" />
 
   
-* OpenShift Service
+## OpenShift Service
 
 <img width="767" height="271" alt="{D553891A-18BA-45F5-AADF-02AFB9EEBCA0}" src="https://github.com/user-attachments/assets/c1a7951b-b3c2-4a2a-9d6b-a21ff1cf4b31" />
 
 
-* OpenShift Routes
+## OpenShift Routes
 
 <img width="788" height="189" alt="{D2E1D620-3CA8-41B7-BFA4-D37DC76F7F0D}" src="https://github.com/user-attachments/assets/20540d95-d13f-43f9-808c-8efc70e55a09" />
 
 
-* OpenShift Secrets
+## OpenShift Secrets
 
 <img width="783" height="243" alt="{5241FCF4-D0C9-40DF-B008-48F383ADFA9F}" src="https://github.com/user-attachments/assets/f9285460-c782-4981-bc26-c0378b8d2a3a" />
 
@@ -269,7 +270,7 @@ db.items.find()
 
 
 
-* CI/CD Pipeline
+## CI/CD Pipeline
 
 <img width="960" height="368" alt="{DE339286-694E-4ADF-8E14-21A82B697E3F}" src="https://github.com/user-attachments/assets/6d83c8ba-7298-4cdb-b3e9-3977f0c907c0" />
 
